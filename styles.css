@@ -166,6 +166,13 @@ body::before {
 
 .game-grid {
   display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  align-items: center;
+}
+
+.game-grid-row {
+  display: flex;
   gap: 1.1rem;
   justify-content: center;
   flex-wrap: wrap;
@@ -529,7 +536,7 @@ option { background: var(--surface); color: var(--text); }
   gap: 0.75rem;
   flex-wrap: wrap;
 }
-.trainer-name-row { display: flex; align-items: center; gap: 0.65rem; }
+.trainer-name-row { display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap; }
 .trainer-name {
   font-size: 1.05rem;
   font-weight: 700;
@@ -542,7 +549,7 @@ option { background: var(--surface); color: var(--text); }
   border-radius: 20px;
   letter-spacing: 0.05em;
 }
-.trainer-meta-row { display: flex; align-items: center; gap: 0.65rem; }
+.trainer-meta-row { display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap; }
 .level-cap-badge {
   font-size: 0.75rem;
   font-weight: 600;
@@ -563,19 +570,19 @@ option { background: var(--surface); color: var(--text); }
 
 .trainer-poke-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-  gap: 0.65rem;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 0.75rem;
   padding: 1rem 1.25rem;
 }
 
 .trainer-poke-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 0.75rem;
   display: flex;
   gap: 0.6rem;
   align-items: flex-start;
+  border-width: 2px;
+  border-style: solid;
 }
 .trainer-poke-card img {
   width: 56px; height: 56px;
@@ -584,34 +591,91 @@ option { background: var(--surface); color: var(--text); }
   flex-shrink: 0;
 }
 .tpc-info { flex: 1; min-width: 0; }
-.tpc-name { font-weight: 700; font-size: 0.83rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.tpc-lv { font-size: 0.72rem; color: var(--muted-light); margin-bottom: 0.3rem; }
-.moves-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.2rem; }
+.tpc-name { font-weight: 700; font-size: 0.83rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 0.1rem; }
+.tpc-lv { font-size: 0.72rem; color: var(--muted-light); margin-bottom: 0.4rem; }
+.tpc-types { display: flex; gap: 0.25rem; flex-wrap: wrap; margin-bottom: 0.4rem; }
+
+.moves-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.25rem; }
 .move-tag {
-  font-size: 0.58rem;
-  background: var(--card);
-  border: 1px solid var(--border);
+  font-size: 0.6rem;
+  font-weight: 700;
   border-radius: 4px;
-  padding: 0.12rem 0.3rem;
-  color: var(--muted);
+  padding: 0.18rem 0.35rem;
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  border-width: 1px;
+  border-style: solid;
+  letter-spacing: 0.01em;
 }
 
-.type-Rock    { background: rgba(180,138,73,0.18); color: #c8a06e; border: 1px solid rgba(180,138,73,0.3); }
-.type-Fight   { background: rgba(194,46,40,0.18); color: #e06060; border: 1px solid rgba(194,46,40,0.3); }
-.type-Electric{ background: rgba(248,208,48,0.18); color: #f8d030; border: 1px solid rgba(248,208,48,0.3); }
-.type-Fire    { background: rgba(240,128,48,0.18); color: #f08030; border: 1px solid rgba(240,128,48,0.3); }
-.type-Normal  { background: rgba(168,168,120,0.18); color: #a8a878; border: 1px solid rgba(168,168,120,0.3); }
-.type-Flying  { background: rgba(104,144,240,0.18); color: #8aaeff; border: 1px solid rgba(104,144,240,0.3); }
-.type-Psychic { background: rgba(248,88,136,0.18); color: #f878a8; border: 1px solid rgba(248,88,136,0.3); }
-.type-Water   { background: rgba(104,144,240,0.18); color: #6090f0; border: 1px solid rgba(104,144,240,0.3); }
-.type-Dark    { background: rgba(112,88,72,0.18); color: #a09080; border: 1px solid rgba(112,88,72,0.3); }
-.type-Ghost   { background: rgba(112,88,152,0.18); color: #9080c8; border: 1px solid rgba(112,88,152,0.3); }
-.type-Ice     { background: rgba(152,216,216,0.18); color: #98d8d8; border: 1px solid rgba(152,216,216,0.3); }
-.type-Dragon  { background: rgba(112,56,248,0.18); color: #9070f8; border: 1px solid rgba(112,56,248,0.3); }
+.type-badge {
+  font-size: 0.6rem;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 0.15rem 0.4rem;
+  border-width: 1px;
+  border-style: solid;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.t-Normal   { background: rgba(168,168,120,0.20); color: #c8c8a0; border-color: rgba(168,168,120,0.45); }
+.t-Fire     { background: rgba(240,128,48,0.20);  color: #f09050; border-color: rgba(240,128,48,0.5); }
+.t-Water    { background: rgba(100,148,240,0.20); color: #78aaf8; border-color: rgba(100,148,240,0.5); }
+.t-Electric { background: rgba(248,208,48,0.20);  color: #f8d840; border-color: rgba(248,208,48,0.5); }
+.t-Grass    { background: rgba(120,200,80,0.20);  color: #78d050; border-color: rgba(120,200,80,0.5); }
+.t-Ice      { background: rgba(152,216,216,0.20); color: #98e0e0; border-color: rgba(152,216,216,0.5); }
+.t-Fighting { background: rgba(194,46,40,0.20);   color: #e06060; border-color: rgba(194,46,40,0.5); }
+.t-Poison   { background: rgba(160,64,160,0.20);  color: #c070c8; border-color: rgba(160,64,160,0.5); }
+.t-Ground   { background: rgba(200,160,80,0.22);  color: #d4a84b; border-color: rgba(200,160,80,0.55); }
+.t-Flying   { background: rgba(104,144,240,0.18); color: #8aaeff; border-color: rgba(104,144,240,0.45); }
+.t-Psychic  { background: rgba(248,88,136,0.20);  color: #f878b0; border-color: rgba(248,88,136,0.5); }
+.t-Bug      { background: rgba(168,184,32,0.20);  color: #b8c820; border-color: rgba(168,184,32,0.5); }
+.t-Rock     { background: rgba(180,138,73,0.22);  color: #c8a06e; border-color: rgba(180,138,73,0.55); }
+.t-Ghost    { background: rgba(112,88,152,0.22);  color: #9080c8; border-color: rgba(112,88,152,0.5); }
+.t-Dragon   { background: rgba(112,56,248,0.20);  color: #9070f8; border-color: rgba(112,56,248,0.5); }
+.t-Dark     { background: rgba(112,88,72,0.22);   color: #b09880; border-color: rgba(112,88,72,0.55); }
+.t-Steel    { background: rgba(184,184,208,0.20); color: #c0c0d8; border-color: rgba(184,184,208,0.5); }
+.t-Shadow   { background: rgba(88,56,120,0.25);   color: #b090e0; border-color: rgba(88,56,120,0.55); }
+
+.card-bg-Normal   { background: rgba(168,168,120,0.10); border-color: rgba(168,168,120,0.40); }
+.card-bg-Fire     { background: rgba(240,128,48,0.10);  border-color: rgba(240,128,48,0.40); }
+.card-bg-Water    { background: rgba(100,148,240,0.10); border-color: rgba(100,148,240,0.40); }
+.card-bg-Electric { background: rgba(248,208,48,0.10);  border-color: rgba(248,208,48,0.40); }
+.card-bg-Grass    { background: rgba(120,200,80,0.10);  border-color: rgba(120,200,80,0.40); }
+.card-bg-Ice      { background: rgba(152,216,216,0.10); border-color: rgba(152,216,216,0.40); }
+.card-bg-Fighting { background: rgba(194,46,40,0.10);   border-color: rgba(194,46,40,0.40); }
+.card-bg-Poison   { background: rgba(160,64,160,0.10);  border-color: rgba(160,64,160,0.40); }
+.card-bg-Ground   { background: rgba(200,160,80,0.12);  border-color: rgba(200,160,80,0.45); }
+.card-bg-Flying   { background: rgba(104,144,240,0.10); border-color: rgba(104,144,240,0.40); }
+.card-bg-Psychic  { background: rgba(248,88,136,0.10);  border-color: rgba(248,88,136,0.40); }
+.card-bg-Bug      { background: rgba(168,184,32,0.10);  border-color: rgba(168,184,32,0.40); }
+.card-bg-Rock     { background: rgba(180,138,73,0.12);  border-color: rgba(180,138,73,0.45); }
+.card-bg-Ghost    { background: rgba(112,88,152,0.12);  border-color: rgba(112,88,152,0.45); }
+.card-bg-Dragon   { background: rgba(112,56,248,0.10);  border-color: rgba(112,56,248,0.40); }
+.card-bg-Dark     { background: rgba(112,88,72,0.12);   border-color: rgba(112,88,72,0.45); }
+.card-bg-Steel    { background: rgba(184,184,208,0.10); border-color: rgba(184,184,208,0.40); }
+
+.trainer-type-badge.t-Normal   { background: rgba(168,168,120,0.20); color: #c8c8a0; border: 1px solid rgba(168,168,120,0.45); }
+.trainer-type-badge.t-Fire     { background: rgba(240,128,48,0.20);  color: #f09050; border: 1px solid rgba(240,128,48,0.5); }
+.trainer-type-badge.t-Water    { background: rgba(100,148,240,0.20); color: #78aaf8; border: 1px solid rgba(100,148,240,0.5); }
+.trainer-type-badge.t-Electric { background: rgba(248,208,48,0.20);  color: #f8d840; border: 1px solid rgba(248,208,48,0.5); }
+.trainer-type-badge.t-Grass    { background: rgba(120,200,80,0.20);  color: #78d050; border: 1px solid rgba(120,200,80,0.5); }
+.trainer-type-badge.t-Ice      { background: rgba(152,216,216,0.20); color: #98e0e0; border: 1px solid rgba(152,216,216,0.5); }
+.trainer-type-badge.t-Fighting { background: rgba(194,46,40,0.20);   color: #e06060; border: 1px solid rgba(194,46,40,0.5); }
+.trainer-type-badge.t-Poison   { background: rgba(160,64,160,0.20);  color: #c070c8; border: 1px solid rgba(160,64,160,0.5); }
+.trainer-type-badge.t-Ground   { background: rgba(200,160,80,0.22);  color: #d4a84b; border: 1px solid rgba(200,160,80,0.55); }
+.trainer-type-badge.t-Flying   { background: rgba(104,144,240,0.18); color: #8aaeff; border: 1px solid rgba(104,144,240,0.45); }
+.trainer-type-badge.t-Psychic  { background: rgba(248,88,136,0.20);  color: #f878b0; border: 1px solid rgba(248,88,136,0.5); }
+.trainer-type-badge.t-Bug      { background: rgba(168,184,32,0.20);  color: #b8c820; border: 1px solid rgba(168,184,32,0.5); }
+.trainer-type-badge.t-Rock     { background: rgba(180,138,73,0.22);  color: #c8a06e; border: 1px solid rgba(180,138,73,0.55); }
+.trainer-type-badge.t-Ghost    { background: rgba(112,88,152,0.22);  color: #9080c8; border: 1px solid rgba(112,88,152,0.5); }
+.trainer-type-badge.t-Dragon   { background: rgba(112,56,248,0.20);  color: #9070f8; border: 1px solid rgba(112,56,248,0.5); }
+.trainer-type-badge.t-Dark     { background: rgba(112,88,72,0.22);   color: #b09880; border: 1px solid rgba(112,88,72,0.55); }
+.trainer-type-badge.t-Steel    { background: rgba(184,184,208,0.20); color: #c0c0d8; border: 1px solid rgba(184,184,208,0.5); }
+.trainer-type-badge.t-Normal   { background: rgba(168,168,120,0.20); color: #c8c8a0; border: 1px solid rgba(168,168,120,0.45); }
 
 .poke-view-wrap {
   max-width: 1100px;
@@ -804,4 +868,5 @@ option { background: var(--surface); color: var(--text); }
   .enc-actions { grid-column: 1 / -1; flex-wrap: wrap; }
   .home-content { padding: 1rem 1rem 4rem; }
   .game-view-wrap, .poke-view-wrap { padding: 1.5rem 1rem 4rem; }
+  .trainer-poke-grid { grid-template-columns: 1fr 1fr; }
 }
