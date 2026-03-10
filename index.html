@@ -1,1 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NuzTrack — Nuzlocke Tracker</title>
+  <link rel="icon" href="logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
 
+  
+  <nav id="navbar">
+    <div class="nav-left">
+      <div class="nav-logo">
+        <img src="logo.svg" alt="NuzTrack Logo" width="36" height="36" />
+      </div>
+      <span class="nav-title">NuzTrack</span>
+    </div>
+    <div class="nav-links">
+      <a class="nav-link" id="nav-game" data-view="game">GAME</a>
+      <a class="nav-link" id="nav-box" data-view="box">BOX</a>
+      <a class="nav-link" id="nav-grave" data-view="grave">GRAVE</a>
+      <a class="nav-link active" id="nav-home" data-view="home">HOME</a>
+    </div>
+  </nav>
+
+  
+  <section id="view-home" class="view active">
+    <div class="hero">
+      <h1 class="hero-title">Nuzlocke Tracker</h1>
+      <p class="hero-subtitle">Track your encounters, battles, and games.</p>
+    </div>
+    <div class="home-content">
+      <div class="card" id="game-select-card">
+        <h2 class="card-title">Choose a Game</h2>
+        <div class="game-grid" id="game-grid"></div>
+      </div>
+      <div class="card" id="load-save-card">
+        <h2 class="card-title">Load a Save</h2>
+        <div id="saves-list"><p class="empty-state">Select a game above to see your saves.</p></div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section id="view-game" class="view">
+    <div class="game-view-wrap">
+      <div id="game-view-header"></div>
+      <div id="encounters-section"></div>
+      <div id="trainers-section"></div>
+    </div>
+  </section>
+
+  
+  <section id="view-box" class="view">
+    <div class="poke-view-wrap">
+      <div class="view-heading">
+        <h1 class="view-title">Pokémon Box</h1>
+        <p class="view-subtitle" id="box-count">—</p>
+      </div>
+      <div id="box-grid" class="pokemon-grid"></div>
+    </div>
+  </section>
+
+  
+  <section id="view-grave" class="view">
+    <div class="poke-view-wrap">
+      <div class="view-heading">
+        <h1 class="view-title">Hall of Fallen</h1>
+        <p class="view-subtitle" id="grave-count">—</p>
+      </div>
+      <div id="grave-grid" class="pokemon-grid"></div>
+    </div>
+  </section>
+
+  
+  <div id="modal-new-run" class="modal-overlay hidden">
+    <div class="modal">
+      <h2 class="modal-title">New Emerald Run</h2>
+      <div class="modal-body">
+        <label class="field-label">Run Name</label>
+        <input type="text" id="run-name-input" placeholder="e.g., Blaziken Solo Challenge" maxlength="40" />
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="modal-cancel-btn">Cancel</button>
+        <button class="btn btn-primary" id="modal-create-btn">Start Run</button>
+      </div>
+    </div>
+  </div>
+
+  
+  <div id="modal-evolve" class="modal-overlay hidden">
+    <div class="modal">
+      <h2 class="modal-title">Evolve Pokémon</h2>
+      <div class="modal-body" id="evolve-modal-body"></div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="evolve-cancel-btn">Cancel</button>
+        <button class="btn btn-primary" id="evolve-confirm-btn">Evolve</button>
+      </div>
+    </div>
+  </div>
+
+  
+  <div id="modal-coming-soon" class="modal-overlay hidden">
+    <div class="modal modal-sm">
+      <h2 class="modal-title" id="cs-game-name">Coming Soon</h2>
+      <p class="modal-desc">This game is not yet implemented. We're working on it — Emerald is available now!</p>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="cs-close-btn">Got It</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
