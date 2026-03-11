@@ -81,241 +81,12 @@ const POKEMON_IDS = {
   Regirock:377, Regice:378, Registeel:379,
   Latias:380, Latios:381,
   Kyogre:382, Groudon:383, Rayquaza:384,
-  Kingdra:230,
-};
-
-const POKEMON_TYPES = {
-  Sandshrew:['Ground'], Sandslash:['Ground'],
-  Pikachu:['Electric'], Raichu:['Electric'],
-  Jigglypuff:['Normal','Fairy'], Wigglytuff:['Normal','Fairy'],
-  Zubat:['Poison','Flying'], Golbat:['Poison','Flying'],
-  Oddish:['Grass','Poison'], Gloom:['Grass','Poison'],
-  Vileplume:['Grass','Poison'], Bellossom:['Grass'],
-  Abra:['Psychic'], Kadabra:['Psychic'], Alakazam:['Psychic'],
-  Machop:['Fighting'], Machoke:['Fighting'], Machamp:['Fighting'],
-  Tentacool:['Water','Poison'], Tentacruel:['Water','Poison'],
-  Geodude:['Rock','Ground'], Graveler:['Rock','Ground'], Golem:['Rock','Ground'],
-  Magnemite:['Electric','Steel'], Magneton:['Electric','Steel'],
-  Grimer:['Poison'], Muk:['Poison'],
-  Voltorb:['Electric'], Electrode:['Electric'],
-  Koffing:['Poison'], Weezing:['Poison'],
-  Rhyhorn:['Ground','Rock'], Rhydon:['Ground','Rock'],
-  Pinsir:['Bug'],
-  Marill:['Water','Fairy'], Azumarill:['Water','Fairy'],
-  Natu:['Psychic','Flying'], Xatu:['Psychic','Flying'],
-  Girafarig:['Normal','Psychic'],
-  Wobbuffet:['Psychic'],
-  Heracross:['Bug','Fighting'],
-  Slugma:['Fire'], Magcargo:['Fire','Rock'],
-  Skarmory:['Steel','Flying'],
-  Treecko:['Grass'], Grovyle:['Grass'], Sceptile:['Grass'],
-  Torchic:['Fire'], Combusken:['Fire','Fighting'], Blaziken:['Fire','Fighting'],
-  Mudkip:['Water'], Marshtomp:['Water','Ground'], Swampert:['Water','Ground'],
-  Poochyena:['Dark'], Mightyena:['Dark'],
-  Zigzagoon:['Normal'], Linoone:['Normal'],
-  Wurmple:['Bug'], Silcoon:['Bug'], Beautifly:['Bug','Flying'],
-  Cascoon:['Bug'], Dustox:['Bug','Poison'],
-  Lotad:['Water','Grass'], Lombre:['Water','Grass'], Ludicolo:['Water','Grass'],
-  Seedot:['Grass'], Nuzleaf:['Grass','Dark'], Shiftry:['Grass','Dark'],
-  Taillow:['Normal','Flying'], Swellow:['Normal','Flying'],
-  Wingull:['Water','Flying'], Pelipper:['Water','Flying'],
-  Ralts:['Psychic','Fairy'], Kirlia:['Psychic','Fairy'], Gardevoir:['Psychic','Fairy'],
-  Surskit:['Bug','Water'], Masquerain:['Bug','Flying'],
-  Shroomish:['Grass'], Breloom:['Grass','Fighting'],
-  Slakoth:['Normal'], Vigoroth:['Normal'], Slaking:['Normal'],
-  Nincada:['Bug','Ground'], Ninjask:['Bug','Flying'], Shedinja:['Bug','Ghost'],
-  Whismur:['Normal'], Loudred:['Normal'], Exploud:['Normal'],
-  Makuhita:['Fighting'], Hariyama:['Fighting'],
-  Azurill:['Normal','Fairy'], Nosepass:['Rock'],
-  Skitty:['Normal'], Delcatty:['Normal'],
-  Sableye:['Dark','Ghost'], Mawile:['Steel','Fairy'],
-  Aron:['Steel','Rock'], Lairon:['Steel','Rock'], Aggron:['Steel','Rock'],
-  Meditite:['Fighting','Psychic'], Medicham:['Fighting','Psychic'],
-  Electrike:['Electric'], Manectric:['Electric'],
-  Plusle:['Electric'], Minun:['Electric'],
-  Volbeat:['Bug'], Illumise:['Bug'],
-  Roselia:['Grass','Poison'],
-  Gulpin:['Poison'], Swalot:['Poison'],
-  Carvanha:['Water','Dark'], Sharpedo:['Water','Dark'],
-  Wailmer:['Water'], Wailord:['Water'],
-  Numel:['Fire','Ground'], Camerupt:['Fire','Ground'],
-  Torkoal:['Fire'],
-  Spoink:['Psychic'], Grumpig:['Psychic'],
-  Spinda:['Normal'],
-  Trapinch:['Ground'], Vibrava:['Ground','Dragon'], Flygon:['Ground','Dragon'],
-  Cacnea:['Grass'], Cacturne:['Grass','Dark'],
-  Swablu:['Normal','Flying'], Altaria:['Dragon','Flying'],
-  Zangoose:['Normal'], Seviper:['Poison'],
-  Lunatone:['Rock','Psychic'], Solrock:['Rock','Psychic'],
-  Barboach:['Water','Ground'], Whiscash:['Water','Ground'],
-  Corphish:['Water'], Crawdaunt:['Water','Dark'],
-  Baltoy:['Ground','Psychic'], Claydol:['Ground','Psychic'],
-  Lileep:['Rock','Grass'], Cradily:['Rock','Grass'],
-  Anorith:['Rock','Bug'], Armaldo:['Rock','Bug'],
-  Feebas:['Water'], Milotic:['Water'],
-  Castform:['Normal'],
-  Kecleon:['Normal'],
-  Shuppet:['Ghost'], Banette:['Ghost'],
-  Duskull:['Ghost'], Dusclops:['Ghost'],
-  Tropius:['Grass','Flying'],
-  Chimecho:['Psychic'],
-  Absol:['Dark'],
-  Snorunt:['Ice'], Glalie:['Ice'],
-  Spheal:['Ice','Water'], Sealeo:['Ice','Water'], Walrein:['Ice','Water'],
-  Clamperl:['Water'], Huntail:['Water'], Gorebyss:['Water'],
-  Relicanth:['Water','Rock'], Luvdisc:['Water'],
-  Bagon:['Dragon'], Shelgon:['Dragon'], Salamence:['Dragon','Flying'],
-  Beldum:['Steel','Psychic'], Metang:['Steel','Psychic'], Metagross:['Steel','Psychic'],
-  Regirock:['Rock'], Regice:['Ice'], Registeel:['Steel'],
-  Latias:['Dragon','Psychic'], Latios:['Dragon','Psychic'],
-  Kyogre:['Water'], Groudon:['Ground'], Rayquaza:['Dragon','Flying'],
-  Kingdra:['Water','Dragon'],
-};
-
-const MOVE_TYPES = {
-  'Tackle':'Normal','Growl':'Normal','Tail Whip':'Normal','Leer':'Normal',
-  'Scratch':'Normal','Pound':'Normal','Slam':'Normal','Body Slam':'Normal',
-  'Hyper Beam':'Normal','Double Team':'Normal','Minimize':'Normal',
-  'Harden':'Normal','Defense Curl':'Normal','Barrier':'Normal',
-  'Facade':'Normal','Swift':'Normal','Headbutt':'Normal','Return':'Normal',
-  'Frustration':'Normal','Tri Attack':'Normal','Explosion':'Normal',
-  'Belly Drum':'Normal','Yawn':'Normal','Swallow':'Normal','Spit Up':'Normal',
-  'Stockpile':'Normal','Teeter Dance':'Normal','Encore':'Normal',
-  'Fake Out':'Normal','Safeguard':'Normal','Mist':'Normal',
-  'Mirror Move':'Normal','Recover':'Normal','Substitute':'Normal',
-  'Psych Up':'Normal','Skill Swap':'Normal','Snatch':'Normal',
-  'Uproar':'Normal','Hyper Voice':'Normal','Screech':'Normal',
-  'Scary Face':'Normal','Odor Sleuth':'Normal','Foresight':'Normal',
-  'Sleep Talk':'Normal','Rest':'Normal','Snore':'Normal',
-  'Attract':'Normal','Captivate':'Normal','Helping Hand':'Normal',
-  'After You':'Normal','Round':'Normal','Echoed Voice':'Normal',
-  'Retaliate':'Normal','Giga Impact':'Normal','Quick Attack':'Normal',
-  'Extreme Speed':'Normal','Covet':'Normal','Last Resort':'Normal',
-
-  'Ember':'Fire','Flamethrower':'Fire','Fire Blast':'Fire','Overheat':'Fire',
-  'Fire Spin':'Fire','Flame Wheel':'Fire','Sacred Fire':'Fire',
-  'Blaze Kick':'Fire','Heat Wave':'Fire','Sunny Day':'Fire',
-  'Will-O-Wisp':'Fire','Flare Blitz':'Fire',
-
-  'Water Gun':'Water','Surf':'Water','Hydro Pump':'Water','Bubble':'Water',
-  'BubbleBeam':'Water','Waterfall':'Water','Dive':'Water',
-  'Water Pulse':'Water','Muddy Water':'Water','Soak':'Water',
-  'Aqua Jet':'Water','Aqua Tail':'Water','Rain Dance':'Water',
-  'Whirlpool':'Water','Clamp':'Water',
-
-  'Thunder':'Electric','Thunderbolt':'Electric','Spark':'Electric',
-  'Thunder Wave':'Electric','Thunderpunch':'Electric','Shock Wave':'Electric',
-  'Charge':'Electric','Charge Beam':'Electric','Wild Charge':'Electric',
-  'Zap Cannon':'Electric',
-
-  'Razor Leaf':'Grass','Mega Drain':'Grass','Giga Drain':'Grass',
-  'Vine Whip':'Grass','Leaf Blade':'Grass','Magical Leaf':'Grass',
-  'Synthesis':'Grass','Ingrain':'Grass','Absorb':'Grass',
-  'Solar Beam':'Grass','Bullet Seed':'Grass','Petal Dance':'Grass',
-  'Spore':'Grass','Stun Spore':'Grass','Sleep Powder':'Grass',
-  'Cotton Spore':'Grass','Leech Seed':'Grass','Worry Seed':'Grass',
-  'Grass Knot':'Grass','Seed Bomb':'Grass',
-
-  'Ice Beam':'Ice','Blizzard':'Ice','Ice Punch':'Ice','Icy Wind':'Ice',
-  'Hail':'Ice','Aurora Beam':'Ice','Ice Ball':'Ice','Sheer Cold':'Ice',
-  'Powder Snow':'Ice','Avalanche':'Ice','Freeze-Dry':'Ice',
-
-  'Low Kick':'Fighting','Karate Chop':'Fighting','Submission':'Fighting',
-  'Seismic Toss':'Fighting','Focus Energy':'Fighting','Hi Jump Kick':'Fighting',
-  'Jump Kick':'Fighting','Cross Chop':'Fighting','Superpower':'Fighting',
-  'Vital Throw':'Fighting','Arm Thrust':'Fighting','Bulk Up':'Fighting',
-  'Brick Break':'Fighting','Sky Uppercut':'Fighting','Mach Punch':'Fighting',
-  'Force Palm':'Fighting','Drain Punch':'Fighting','Close Combat':'Fighting',
-  'Focus Punch':'Fighting','Counter':'Fighting','Detect':'Fighting',
-
-  'Poison Sting':'Poison','Acid':'Poison','Smog':'Poison','Sludge':'Poison',
-  'Sludge Bomb':'Poison','Poison Powder':'Poison','Toxic':'Poison',
-  'Gunk Shot':'Poison','Venoshock':'Poison','Poison Gas':'Poison',
-  'Poison Fang':'Poison','Poison Tail':'Poison','Cross Poison':'Poison',
-
-  'Earthquake':'Ground','Magnitude':'Ground','Fissure':'Ground',
-  'Sand Attack':'Ground','Mud Shot':'Ground','Mud-Slap':'Ground',
-  'Bone Rush':'Ground','Bone Club':'Ground','Earth Power':'Ground',
-  'Dig':'Ground','Mud Bomb':'Ground','Bulldoze':'Ground',
-
-  'Gust':'Flying','Wing Attack':'Flying','Fly':'Flying','Aerial Ace':'Flying',
-  'Air Slash':'Flying','Pluck':'Flying','Brave Bird':'Flying',
-  'Roost':'Flying','Tailwind':'Flying','Whirlwind':'Flying',
-  'Bounce':'Flying','Peck':'Flying','Drill Peck':'Flying',
-  'Sky Attack':'Flying','Acrobatics':'Flying',
-
-  'Confusion':'Psychic','Psychic':'Psychic','Psybeam':'Psychic',
-  'Psywave':'Psychic','Extrasensory':'Psychic','Future Sight':'Psychic',
-  'Calm Mind':'Psychic','Amnesia':'Psychic','Kinesis':'Psychic',
-  'Hypnosis':'Psychic','Meditate':'Psychic','Reflect':'Psychic',
-  'Light Screen':'Psychic','Psych Up':'Psychic','Miracle Eye':'Psychic',
-  'Cosmic Power':'Psychic','Gravity':'Psychic','Trick':'Psychic',
-  'Role Play':'Psychic','Healing Wish':'Psychic','Guard Swap':'Psychic',
-  'Hidden Power':'Normal',
-
-  'Twineedle':'Bug','Pin Missile':'Bug','Leech Life':'Bug','Fury Cutter':'Bug',
-  'X-Scissor':'Bug','Bug Bite':'Bug','Bug Buzz':'Bug',
-  'Signal Beam':'Bug','Silver Wind':'Bug','Quiver Dance':'Bug',
-  'Infestation':'Bug','Struggle Bug':'Bug','Megahorn':'Bug',
-
-  'Rock Throw':'Rock','Rock Slide':'Rock','Rock Blast':'Rock',
-  'Rollout':'Rock','Rock Tomb':'Rock','AncientPower':'Rock',
-  'Stone Edge':'Rock','Head Smash':'Rock','Smack Down':'Rock',
-  'Stealth Rock':'Rock','Sandstorm':'Rock','Rock Polish':'Rock',
-
-  'Shadow Ball':'Ghost','Shadow Punch':'Ghost','Shadow Sneak':'Ghost',
-  'Confuse Ray':'Ghost','Spite':'Ghost','Grudge':'Ghost',
-  'Curse':'Ghost','Destiny Bond':'Ghost','Hex':'Ghost',
-  'Night Shade':'Ghost','Lick':'Ghost','Will-O-Wisp':'Fire',
-
-  'Dragon Rage':'Dragon','DragonBreath':'Dragon','Dragon Dance':'Dragon',
-  'Dragon Claw':'Dragon','Outrage':'Dragon','Dragon Pulse':'Dragon',
-  'Twister':'Dragon','Dual Chop':'Dragon','Dragon Tail':'Dragon',
-
-  'Bite':'Dark','Crunch':'Dark','Thief':'Dark','Taunt':'Dark',
-  'Torment':'Dark','Flatter':'Dark','Swagger':'Dark','Embargo':'Dark',
-  'Payback':'Dark','Punishment':'Dark','Sucker Punch':'Dark',
-  'Dark Pulse':'Dark','Faint Attack':'Dark','Beat Up':'Dark',
-  'Knock Off':'Dark','Feint Attack':'Dark','Night Slash':'Dark',
-  'Nasty Plot':'Dark','Fake Tears':'Dark','Memento':'Dark',
-
-  'Metal Claw':'Steel','Iron Tail':'Steel','Iron Head':'Steel',
-  'Steel Wing':'Steel','Flash Cannon':'Steel','Meteor Mash':'Steel',
-  'Iron Defense':'Steel','Magnet Rise':'Steel','Gyro Ball':'Steel',
-  'Mirror Shot':'Steel','Metal Sound':'Steel','Spikes':'Steel',
-
-  'Stomp':'Normal','Tackle':'Normal','Slam':'Normal','Thrash':'Normal',
-  'Roar':'Normal','Protect':'Normal','Endure':'Normal',
-  'Block':'Normal','Recycle':'Normal','Refresh':'Normal',
-  'Flail':'Normal','Tickle':'Normal','Wish':'Normal',
 };
 
 function spriteUrl(name) {
   const id = POKEMON_IDS[name];
   if (!id) return null;
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
-}
-
-function getPokeTypes(name) {
-  return POKEMON_TYPES[name] || ['Normal'];
-}
-
-function getMoveType(moveName) {
-  return MOVE_TYPES[moveName] || 'Normal';
-}
-
-function typeBadgeHtml(type) {
-  return `<span class="type-badge t-${type}">${type}</span>`;
-}
-
-function moveTagHtml(move) {
-  const t = getMoveType(move);
-  return `<div class="move-tag t-${t}" title="${t}">${move}</div>`;
-}
-
-function pokeCardBgClass(name) {
-  const types = getPokeTypes(name);
-  return `card-bg-${types[0]}`;
 }
 
 const EVOLUTIONS = {
@@ -426,7 +197,7 @@ const EMERALD_TRAINERS = [
   },
   {
     id:'brawly', name:'Brawly', title:'Gym Leader', location:'Dewford Town',
-    badge:'Knuckle Badge', type:'Fighting', levelCap:20,
+    badge:'Knuckle Badge', type:'Fight', levelCap:20,
     pokemon:[
       { name:'Machop', level:17, moves:['Low Kick','Leer','Focus Energy','Karate Chop'] },
       { name:'Meditite', level:17, moves:['Confusion','Detect','Hidden Power','Endure'] },
@@ -471,7 +242,7 @@ const EMERALD_TRAINERS = [
       { name:'Tropius', level:31, moves:['Magical Leaf','Synthesis','Stomp','Whirlwind'] },
       { name:'Pelipper', level:30, moves:['Surf','Protect','Ice Beam','Shock Wave'] },
       { name:'Skarmory', level:33, moves:['Steel Wing','Sand Attack','Spikes','Fly'] },
-      { name:'Altaria', level:35, moves:['Dragon Dance','DragonBreath','Sing','Aerial Ace'] },
+      { name:'Altaria', level:35, moves:['Dragon Dance','Dragonbreath','Sing','Aerial Ace'] },
     ]
   },
   {
@@ -539,7 +310,7 @@ const EMERALD_TRAINERS = [
   },
   {
     id:'steven', name:'Steven Stone', title:'Champion', location:'Ever Grande City',
-    badge:null, type:'Steel', levelCap:58,
+    badge:null, type:'Normal', levelCap:58,
     pokemon:[
       { name:'Skarmory', level:57, moves:['Aerial Ace','Toxic','Sand Attack','Spikes'] },
       { name:'Claydol', level:55, moves:['Psychic','Earth Power','Cosmic Power','AncientPower'] },
@@ -568,26 +339,42 @@ const TRAINER_BADGE_MAP = {
   tate_liza:'mind', juan:'rain'
 };
 
+// ── Updated: use local title-card images from /images/ folder ──
 const GAMES = [
   {
-    id:'ruby', name:'Pokémon Ruby', shortName:'Ruby', available:false,
-    coverUrl:'https://upload.wikimedia.org/wikipedia/en/1/1a/Pokemon_Ruby_EN_boxart.png',
+    id:'emerald',
+    name:'Pokémon Emerald',
+    shortName:'Emerald',
+    available: true,
+    coverUrl:'images/emerald.webp',
   },
   {
-    id:'sapphire', name:'Pokémon Sapphire', shortName:'Sapphire', available:false,
-    coverUrl:'https://upload.wikimedia.org/wikipedia/en/6/60/Pokemon_Sapphire_EN_boxart.png',
+    id:'ruby',
+    name:'Pokémon Ruby',
+    shortName:'Ruby',
+    available: false,
+    coverUrl:'images/ruby.png',
   },
   {
-    id:'emerald', name:'Pokémon Emerald', shortName:'Emerald', available:true,
-    coverUrl:'https://upload.wikimedia.org/wikipedia/en/9/9b/Pokemon_Emerald_Version.png',
+    id:'sapphire',
+    name:'Pokémon Sapphire',
+    shortName:'Sapphire',
+    available: false,
+    coverUrl:'images/sapphire.png',
   },
   {
-    id:'firered', name:'Pokémon FireRed', shortName:'FireRed', available:false,
-    coverUrl:'https://upload.wikimedia.org/wikipedia/en/f/f3/Pokemon_FireRed_EN_boxart.png',
+    id:'firered',
+    name:'Pokémon FireRed',
+    shortName:'FireRed',
+    available: false,
+    coverUrl:'images/firered.webp',
   },
   {
-    id:'leafgreen', name:'Pokémon LeafGreen', shortName:'LeafGreen', available:false,
-    coverUrl:'https://upload.wikimedia.org/wikipedia/en/c/ce/Pokemon_LeafGreen_EN_boxart.png',
+    id:'leafgreen',
+    name:'Pokémon LeafGreen',
+    shortName:'LeafGreen',
+    available: false,
+    coverUrl:'images/leafgreen.webp',
   },
 ];
 
@@ -628,7 +415,7 @@ function createNewRun(game, name) {
   const id = makeRunId();
   const encounters = {};
   EMERALD_ENCOUNTERS.forEach(e => {
-    encounters[e.id] = { pokemon:'', nickname:'', status:'none' };
+    encounters[e.id] = { pokemon: '', nickname: '', status: 'none' };
   });
   const run = {
     id, game, name,
@@ -683,11 +470,15 @@ function toggleTrainerDefeated(trainerId) {
   if (idx === -1) {
     run.defeatedTrainers.push(trainerId);
     const badgeId = TRAINER_BADGE_MAP[trainerId];
-    if (badgeId && !run.badges.includes(badgeId)) run.badges.push(badgeId);
+    if (badgeId && !run.badges.includes(badgeId)) {
+      run.badges.push(badgeId);
+    }
   } else {
     run.defeatedTrainers.splice(idx, 1);
     const badgeId = TRAINER_BADGE_MAP[trainerId];
-    if (badgeId) run.badges = run.badges.filter(b => b !== badgeId);
+    if (badgeId) {
+      run.badges = run.badges.filter(b => b !== badgeId);
+    }
   }
   saveState();
 }
@@ -697,11 +488,14 @@ let currentView = 'home';
 function navigate(view) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+
   const el = document.getElementById('view-' + view);
   const navEl = document.getElementById('nav-' + view);
   if (el) el.classList.add('active');
   if (navEl) navEl.classList.add('active');
+
   currentView = view;
+
   if (view === 'home')  renderHome();
   if (view === 'game')  renderGame();
   if (view === 'box')   renderBox();
@@ -715,23 +509,16 @@ function renderHome() {
 
 function renderGameGrid() {
   const grid = document.getElementById('game-grid');
-  const row1 = GAMES.slice(0, 3);
-  const row2 = GAMES.slice(3, 5);
-
-  function tileHtml(g) {
+  grid.innerHTML = GAMES.map(g => {
     const selected = state.selectedGame === g.id ? 'selected' : '';
     const cs = g.available ? '' : 'coming-soon';
     return `
       <div class="game-tile ${selected} ${cs}" data-game="${g.id}" data-available="${g.available}" title="${g.name}">
-        <img src="${g.coverUrl}" alt="${g.name}" onerror="this.style.opacity='0.3'"/>
+        <img src="${g.coverUrl}" alt="${g.name}" onerror="this.style.display='none'"/>
         <div class="game-tile-label">${g.shortName}</div>
         ${g.available ? '' : `<div class="game-tile-overlay"><span>COMING<br/>SOON</span></div>`}
       </div>`;
-  }
-
-  grid.innerHTML = `
-    <div class="game-grid-row">${row1.map(tileHtml).join('')}</div>
-    <div class="game-grid-row">${row2.map(tileHtml).join('')}</div>`;
+  }).join('');
 
   grid.querySelectorAll('.game-tile').forEach(tile => {
     tile.addEventListener('click', () => {
@@ -807,6 +594,7 @@ function renderGame() {
     document.getElementById('trainers-section').innerHTML = '';
     return;
   }
+
   renderRunHeader(run);
   renderEncounters(run);
   renderTrainers(run);
@@ -850,6 +638,7 @@ function renderEncounters(run) {
     const sel = row.querySelector('.enc-poke-select');
     sel?.addEventListener('change', () => {
       updateEncounterField(locId, 'pokemon', sel.value);
+      updateSpriteInRow(row, sel.value);
       renderGame();
     });
 
@@ -952,6 +741,16 @@ function buildActionBtns(status, pokemon) {
   return '';
 }
 
+function updateSpriteInRow(row, pokemonName) {
+  const old = row.querySelector('.enc-sprite, .enc-sprite-empty');
+  if (!old) return;
+  if (pokemonName) {
+    old.outerHTML = `<img class="enc-sprite" src="${spriteUrl(pokemonName)||''}" alt="${pokemonName}" onerror="this.style.display='none'">`;
+  } else {
+    old.outerHTML = `<div class="enc-sprite-empty">?</div>`;
+  }
+}
+
 function renderTrainers(run) {
   const container = document.getElementById('trainers-section');
   container.innerHTML = `
@@ -962,7 +761,8 @@ function renderTrainers(run) {
 
   container.querySelectorAll('.defeat-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      toggleTrainerDefeated(btn.dataset.trainer);
+      const { trainer } = btn.dataset;
+      toggleTrainerDefeated(trainer);
       renderGame();
     });
   });
@@ -973,21 +773,16 @@ function buildTrainerCard(trainer, run) {
   const defClass  = defeated ? 'defeated' : '';
   const defBadge  = defeated ? `<span class="defeated-badge">✓ Defeated</span>` : '';
   const btnLabel  = defeated ? 'Mark Active' : 'Mark Defeated';
-  const trainerType = trainer.type;
 
   const pokeCards = trainer.pokemon.map(p => {
     const spr = spriteUrl(p.name);
-    const types = getPokeTypes(p.name);
-    const bgClass = `card-bg-${types[0]}`;
-    const typeBadges = types.map(typeBadgeHtml).join('');
-    const movesHtml = p.moves.map(moveTagHtml).join('');
+    const movesHtml = p.moves.map(m => `<div class="move-tag">${m}</div>`).join('');
     return `
-      <div class="trainer-poke-card ${bgClass}">
+      <div class="trainer-poke-card">
         ${spr ? `<img src="${spr}" alt="${p.name}" onerror="this.style.display='none'">` : ''}
         <div class="tpc-info">
           <div class="tpc-name">${p.name}</div>
           <div class="tpc-lv">Lv. ${p.level}</div>
-          <div class="tpc-types">${typeBadges}</div>
           <div class="moves-grid">${movesHtml}</div>
         </div>
       </div>`;
@@ -998,7 +793,7 @@ function buildTrainerCard(trainer, run) {
       <div class="trainer-head">
         <div class="trainer-name-row">
           <span class="trainer-name">${escHtml(trainer.name)}</span>
-          <span class="trainer-type-badge t-${trainerType}">${trainerType}</span>
+          <span class="trainer-type-badge type-${trainer.type}">${trainer.type}</span>
           <span style="font-size:0.78rem;color:var(--muted-light)">${trainer.title} · ${trainer.location}</span>
           ${defBadge}
         </div>
@@ -1059,16 +854,12 @@ function buildPokeCard(enc, isDead) {
   const locData = EMERALD_ENCOUNTERS.find(e => e.id === enc.locId);
   const locName = locData?.location || enc.locId;
   const nickname = enc.nickname || enc.pokemon;
-  const types = getPokeTypes(enc.pokemon);
-  const bgClass = `card-bg-${types[0]}`;
-  const typeBadges = types.map(typeBadgeHtml).join('');
 
   return `
-    <div class="poke-card ${isDead?'grave-card':''} ${bgClass}">
+    <div class="poke-card ${isDead?'grave-card':''}">
       ${spr ? `<img class="poke-sprite" src="${spr}" alt="${enc.pokemon}" onerror="this.style.display='none'">` : ''}
       <div class="poke-nickname">${escHtml(nickname)}</div>
       <div class="poke-species">${escHtml(enc.pokemon)}</div>
-      <div style="display:flex;gap:0.25rem;justify-content:center;margin:0.3rem 0;">${typeBadges}</div>
       <div class="poke-loc-tag">${escHtml(locName)}</div>
     </div>`;
 }
@@ -1146,6 +937,7 @@ function showToast(msg, type) {
   el.className = 'toast';
   if (type === 'green') el.classList.add('toast-green');
   if (type === 'red')   el.classList.add('toast-red');
+
   if (toastTimer) clearTimeout(toastTimer);
   toastTimer = setTimeout(() => el.classList.add('hidden'), 2800);
 }
@@ -1201,11 +993,11 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('cs-close-btn').addEventListener('click', hideComingSoonModal);
 
   ['modal-new-run','modal-evolve','modal-coming-soon'].forEach(id => {
-    document.getElementById(id)?.addEventListener('click', e => {
+    document.getElementById(id)?.addEventListener('click', (e) => {
       if (e.target !== e.currentTarget) return;
-      if (id === 'modal-new-run') hideNewRunModal();
-      if (id === 'modal-evolve')  hideEvolveModal();
-      if (id === 'modal-coming-soon') hideComingSoonModal();
+      if (id==='modal-new-run') hideNewRunModal();
+      if (id==='modal-evolve')  hideEvolveModal();
+      if (id==='modal-coming-soon') hideComingSoonModal();
     });
   });
 
