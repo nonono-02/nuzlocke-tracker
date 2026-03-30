@@ -339,39 +339,38 @@ const TRAINER_BADGE_MAP = {
   tate_liza:'mind', juan:'rain'
 };
 
-// ── Updated: use local title-card images from /images/ folder ──
 const GAMES = [
   {
     id:'emerald',
-    name:'Pokémon Emerald',
+    name:'Pokemon Emerald',
     shortName:'Emerald',
     available: true,
     coverUrl:'images/emerald.webp',
   },
   {
     id:'ruby',
-    name:'Pokémon Ruby',
+    name:'Pokemon Ruby',
     shortName:'Ruby',
     available: false,
     coverUrl:'images/ruby.png',
   },
   {
     id:'sapphire',
-    name:'Pokémon Sapphire',
+    name:'Pokemon Sapphire',
     shortName:'Sapphire',
     available: false,
     coverUrl:'images/sapphire.png',
   },
   {
     id:'firered',
-    name:'Pokémon FireRed',
+    name:'Pokemon FireRed',
     shortName:'FireRed',
     available: false,
     coverUrl:'images/firered.webp',
   },
   {
     id:'leafgreen',
-    name:'Pokémon LeafGreen',
+    name:'Pokemon LeafGreen',
     shortName:'LeafGreen',
     available: false,
     coverUrl:'images/leafgreen.webp',
@@ -563,7 +562,7 @@ function renderSaves(gameId) {
     }).join('') + `</div>`;
   }
 
-  html += `<button class="btn-new-run" id="new-run-btn">＋ Start New Run</button>`;
+  html += `<button class="btn-new-run" id="new-run-btn">+ Start New Run</button>`;
   container.innerHTML = html;
 
   container.querySelectorAll('[data-action]').forEach(btn => {
@@ -654,7 +653,7 @@ function renderEncounters(run) {
         const data = currentRun?.encounters[locId] || {};
 
         if (act === 'catch') {
-          if (!data.pokemon) { showToast('Choose a Pokémon first!', 'red'); return; }
+          if (!data.pokemon) { showToast('Choose a Pokemon first!', 'red'); return; }
           setEncounterStatus(locId, 'alive');
           showToast(`${data.pokemon} caught!`, 'green');
         } else if (act === 'miss') {
@@ -663,7 +662,7 @@ function renderEncounters(run) {
         } else if (act === 'kill') {
           if (!confirm(`Mark ${data.nickname || data.pokemon} as fainted?`)) return;
           setEncounterStatus(locId, 'dead');
-          showToast(`${data.nickname || data.pokemon} has fallen... 💀`, 'red');
+          showToast(`${data.nickname || data.pokemon} has fainted.`, 'red');
         } else if (act === 'release') {
           if (!confirm(`Release ${data.nickname || data.pokemon}?`)) return;
           setEncounterStatus(locId, 'released');
@@ -687,7 +686,7 @@ function buildEncRow(enc, data) {
     ? `<img class="enc-sprite" src="${spriteUrl(pokemon)||''}" alt="${pokemon}" onerror="this.style.display='none'">`
     : `<div class="enc-sprite-empty">?</div>`;
 
-  const options = `<option value="">Choose…</option>` + enc.available.map(p =>
+  const options = `<option value="">Choose...</option>` + enc.available.map(p =>
     `<option value="${p}" ${p===pokemon?'selected':''}>${p}</option>`
   ).join('');
 
@@ -771,7 +770,7 @@ function renderTrainers(run) {
 function buildTrainerCard(trainer, run) {
   const defeated = run.defeatedTrainers.includes(trainer.id);
   const defClass  = defeated ? 'defeated' : '';
-  const defBadge  = defeated ? `<span class="defeated-badge">✓ Defeated</span>` : '';
+  const defBadge  = defeated ? `<span class="defeated-badge">Defeated</span>` : '';
   const btnLabel  = defeated ? 'Mark Active' : 'Mark Defeated';
 
   const pokeCards = trainer.pokemon.map(p => {
@@ -798,7 +797,7 @@ function buildTrainerCard(trainer, run) {
           ${defBadge}
         </div>
         <div class="trainer-meta-row">
-          <span class="level-cap-badge">⬆ Level Cap: ${trainer.levelCap}</span>
+          <span class="level-cap-badge">Level Cap: ${trainer.levelCap}</span>
           ${trainer.badge ? `<span class="level-cap-badge" style="color:var(--accent);border-color:var(--accent)">${trainer.badge}</span>` : ''}
           <button class="btn btn-ghost btn-sm defeat-btn" data-trainer="${trainer.id}">${btnLabel}</button>
         </div>
@@ -822,9 +821,9 @@ function renderBox() {
     .filter(([,e]) => e.status === 'alive' && e.pokemon)
     .map(([locId, e]) => ({...e, locId}));
 
-  countEl.textContent = `${alive.length} Pokémon`;
+  countEl.textContent = `${alive.length} Pokemon`;
   container.innerHTML = alive.length === 0
-    ? `<p class="empty-state" style="grid-column:1/-1">No Pokémon in your box yet. Go catch some!</p>`
+    ? `<p class="empty-state" style="grid-column:1/-1">No Pokemon in your box yet. Go catch some!</p>`
     : alive.map(e => buildPokeCard(e, false)).join('');
 }
 
@@ -845,7 +844,7 @@ function renderGrave() {
 
   countEl.textContent = `${dead.length} fallen`;
   container.innerHTML = dead.length === 0
-    ? `<p class="empty-state" style="grid-column:1/-1">No fallen Pokémon. Long may they live!</p>`
+    ? `<p class="empty-state" style="grid-column:1/-1">No fallen Pokemon. Long may they live!</p>`
     : dead.map(e => buildPokeCard(e, true)).join('');
 }
 
@@ -891,7 +890,7 @@ function showEvolveModal(locationId, pokemonName) {
 
   const body = document.getElementById('evolve-modal-body');
   body.innerHTML = `
-    <p class="field-label" style="margin-bottom:0.75rem">${pokemonName} → </p>
+    <p class="field-label" style="margin-bottom:0.75rem">${pokemonName} evolves into:</p>
     <div class="evolve-options">
       ${evos.map(evo => {
         const spr = spriteUrl(evo);
@@ -950,10 +949,10 @@ function noRunState(view) {
   const msgs = {
     game:  ['No Active Run', 'Head to <b>Home</b> to select a game and start or load a run.'],
     box:   ['No Active Run', 'Start a run from <b>Home</b> to track your team.'],
-    grave: ['No Active Run', 'Start a run from <b>Home</b> to track your fallen Pokémon.'],
+    grave: ['No Active Run', 'Start a run from <b>Home</b> to track your fallen Pokemon.'],
   };
   const [h, p] = msgs[view]||['No Active Run',''];
-  return `<div class="no-run-state"><span class="nrs-icon">⬛</span><h2>${h}</h2><p>${p}</p></div>`;
+  return `<div class="no-run-state"><h2>${h}</h2><p>${p}</p></div>`;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -973,20 +972,23 @@ document.addEventListener('DOMContentLoaded', () => {
     createNewRun(pendingRunGame, name);
     hideNewRunModal();
     navigate('game');
-    showToast(`Run "${name}" started! Good luck! 🍀`, 'green');
+    showToast(`Run "${name}" started. Good luck!`, 'green');
   });
   document.getElementById('run-name-input').addEventListener('keydown', e => {
     if (e.key === 'Enter') document.getElementById('modal-create-btn').click();
   });
 
+  // 3/30/26 bugfix
+  // fixed null bug with hideEvolveModal returning null on evolutions
   document.getElementById('evolve-cancel-btn').addEventListener('click', hideEvolveModal);
   document.getElementById('evolve-confirm-btn').addEventListener('click', () => {
     if (!pendingEvolveLoc || !pendingEvolveSelection) return;
     const run = getCurrentRun();
     const old = run?.encounters[pendingEvolveLoc]?.pokemon;
-    evolveEncounter(pendingEvolveLoc, pendingEvolveSelection);
+    const newPokemon = pendingEvolveSelection;
+    evolveEncounter(pendingEvolveLoc, newPokemon);
     hideEvolveModal();
-    showToast(`${old} evolved into ${pendingEvolveSelection}! ✨`, 'green');
+    showToast(`${old} evolved into ${newPokemon}!`, 'green');
     renderGame();
   });
 
