@@ -81,6 +81,19 @@ const POKEMON_IDS = {
   Regirock:377, Regice:378, Registeel:379,
   Latias:380, Latios:381,
   Kyogre:382, Groudon:383, Rayquaza:384,
+  // Additional entries for fishing, gift, and evolution chains
+  Doduo:84, Dodrio:85,
+  Psyduck:54, Golduck:55,
+  Phanpy:231, Donphan:232,
+  Vulpix:37, Ninetales:38,
+  Wynaut:360,
+  Magikarp:129, Gyarados:130,
+  Goldeen:118, Seaking:119,
+  Horsea:116, Seadra:117, Kingdra:230,
+  Staryu:120, Starmie:121,
+  Corsola:222,
+  Chinchou:170, Lanturn:171,
+  Ditto:132,
 };
 
 function spriteUrl(name) {
@@ -148,41 +161,98 @@ const EVOLUTIONS = {
   Sandshrew:['Sandslash'],
   Natu:['Xatu'],
   Rhyhorn:['Rhydon'],
+  // Additional evolution chains
+  Doduo:['Dodrio'],
+  Psyduck:['Golduck'],
+  Phanpy:['Donphan'],
+  Vulpix:['Ninetales'],
+  Magikarp:['Gyarados'],
+  Goldeen:['Seaking'],
+  Horsea:['Seadra'], Seadra:['Kingdra'],
+  Staryu:['Starmie'],
+  Chinchou:['Lanturn'],
+  Wynaut:['Wobbuffet'],
 };
 
 const EMERALD_ENCOUNTERS = [
-  { id:'starter',    location:'Littleroot Town', area:'Professor Birch', available:['Treecko','Torchic','Mudkip'] },
-  { id:'route101',   location:'Route 101', area:'Tall Grass', available:['Poochyena','Zigzagoon'] },
-  { id:'route102',   location:'Route 102', area:'Tall Grass', available:['Poochyena','Zigzagoon','Lotad','Seedot','Wurmple'] },
-  { id:'route103',   location:'Route 103', area:'Tall Grass', available:['Poochyena','Zigzagoon'] },
-  { id:'route104s',  location:'Route 104 (S)', area:'Tall Grass', available:['Marill','Wingull','Tentacool'] },
-  { id:'pburg_woods',location:'Petalburg Woods', area:'Forest', available:['Shroomish','Slakoth','Wurmple','Silcoon','Cascoon'] },
-  { id:'route104n',  location:'Route 104 (N)', area:'Tall Grass', available:['Poochyena','Wingull','Taillow'] },
-  { id:'route116',   location:'Route 116', area:'Tall Grass', available:['Skitty','Whismur','Nincada','Abra','Zigzagoon'] },
-  { id:'rusturf',    location:'Rusturf Tunnel', area:'Cave', available:['Whismur'] },
-  { id:'route110',   location:'Route 110', area:'Tall Grass', available:['Plusle','Minun','Electrike','Wingull','Zigzagoon'] },
-  { id:'route117',   location:'Route 117', area:'Tall Grass', available:['Marill','Poochyena','Plusle','Minun','Roselia','Volbeat','Illumise'] },
-  { id:'route111g',  location:'Route 111 (Grass)', area:'Tall Grass', available:['Numel','Lairon'] },
-  { id:'route111d',  location:'Route 111 (Desert)', area:'Sand', available:['Sandshrew','Sandslash','Cacnea','Trapinch'] },
-  { id:'route112',   location:'Route 112', area:'Tall Grass', available:['Marill','Numel'] },
-  { id:'fiery_path', location:'Fiery Path', area:'Cave', available:['Koffing','Torkoal','Grimer'] },
-  { id:'jagged',     location:'Jagged Pass', area:'Tall Grass', available:['Numel','Machop','Spoink'] },
-  { id:'route113',   location:'Route 113', area:'Ash Grass', available:['Spinda','Skarmory','Slugma','Sandshrew'] },
-  { id:'route114',   location:'Route 114', area:'Tall Grass', available:['Poochyena','Lombre','Nuzleaf','Seviper','Zangoose'] },
-  { id:'route115',   location:'Route 115', area:'Tall Grass', available:['Swablu','Jigglypuff','Wingull'] },
-  { id:'route118',   location:'Route 118', area:'Tall Grass', available:['Electrike','Wingull','Zigzagoon','Kecleon'] },
-  { id:'route119',   location:'Route 119', area:'Tall Grass', available:['Tropius','Zigzagoon','Kecleon','Oddish'] },
-  { id:'route120',   location:'Route 120', area:'Tall Grass', available:['Absol','Oddish','Kecleon','Gloom'] },
-  { id:'route121',   location:'Route 121', area:'Tall Grass', available:['Shuppet','Zigzagoon','Kecleon'] },
-  { id:'safari',     location:'Safari Zone', area:'Safari', available:['Pikachu','Natu','Girafarig','Oddish','Wobbuffet','Pinsir','Heracross','Rhyhorn'] },
-  { id:'mt_pyre',    location:'Mt. Pyre (Inside)', area:'Cave', available:['Shuppet','Duskull'] },
-  { id:'route123',   location:'Route 123', area:'Tall Grass', available:['Shuppet','Roselia','Oddish','Gloom'] },
-  { id:'shoal',      location:'Shoal Cave', area:'Cave', available:['Spheal','Snorunt','Zubat'] },
-  { id:'new_mauville',location:'New Mauville', area:'Building', available:['Voltorb','Electrike','Magneton'] },
-  { id:'seafloor',   location:'Seafloor Cavern', area:'Cave', available:['Zubat','Golbat','Wailmer','Tentacruel'] },
-  { id:'cave_origin',location:'Cave of Origin', area:'Cave', available:['Zubat','Golbat'] },
-  { id:'sky_pillar', location:'Sky Pillar', area:'Tower', available:['Claydol','Banette','Mawile','Altaria','Golbat'] },
-  { id:'vict_road',  location:'Victory Road', area:'Cave', available:['Golbat','Hariyama','Mightyena','Medicham','Lairon','Geodude'] },
+  // ── STARTERS ──────────────────────────────────────────────────────────────
+  { id:'starter',        location:'Littleroot Town',         area:'Gift (Prof. Birch)',    available:['Treecko','Torchic','Mudkip'] },
+
+  // ── BEFORE GYM 1 · Rustboro — Roxanne (Rock) ──────────────────────────────
+  { id:'route101',       location:'Route 101',               area:'Tall Grass',            available:['Wurmple','Zigzagoon','Poochyena'] },
+  { id:'route103',       location:'Route 103',               area:'Tall Grass',            available:['Poochyena','Zigzagoon','Wingull'] },
+  { id:'route102',       location:'Route 102',               area:'Tall Grass',            available:['Poochyena','Zigzagoon','Wurmple','Lotad','Seedot','Ralts'] },
+  { id:'route104s',      location:'Route 104 (South)',       area:'Tall Grass',            available:['Wingull','Poochyena','Zigzagoon'] },
+  { id:'pburg_woods',    location:'Petalburg Woods',         area:'Forest',                available:['Shroomish','Slakoth','Wurmple','Silcoon','Cascoon','Taillow'] },
+  { id:'route104n',      location:'Route 104 (North)',       area:'Tall Grass',            available:['Taillow','Wingull','Poochyena'] },
+  { id:'route116',       location:'Route 116',               area:'Tall Grass',            available:['Skitty','Nincada','Abra','Zigzagoon','Taillow'] },
+  { id:'rusturf',        location:'Rusturf Tunnel',          area:'Cave',                  available:['Whismur'] },
+  { id:'shedinja_bonus', location:'Nincada Evolution',       area:'Evolution Bonus',       available:['Shedinja'] },
+
+  // ── BEFORE GYM 2 · Dewford — Brawly (Fighting) ────────────────────────────
+  { id:'dewford_fish',   location:'Dewford Town (Old Rod)',  area:'Old Rod',               available:['Magikarp','Tentacool','Goldeen'] },
+  { id:'granite_cave',   location:'Granite Cave',            area:'Cave',                  available:['Zubat','Makuhita','Geodude','Sableye','Aron'] },
+  { id:'granite_rs',     location:'Granite Cave (Lower)',    area:'Rock Smash',            available:['Nosepass'] },
+
+  // ── BEFORE GYM 3 · Mauville — Wattson (Electric) ─────────────────────────
+  { id:'route110',       location:'Route 110',               area:'Tall Grass',            available:['Plusle','Minun','Electrike','Oddish','Gulpin','Volbeat','Illumise'] },
+  { id:'route117',       location:'Route 117',               area:'Tall Grass',            available:['Marill','Poochyena','Plusle','Minun','Roselia','Volbeat','Illumise'] },
+
+  // ── BEFORE GYM 4 · Lavaridge — Flannery (Fire) ───────────────────────────
+  { id:'route111g',      location:'Route 111 (Grass)',       area:'Tall Grass',            available:['Numel','Spinda'] },
+  { id:'route111d',      location:'Route 111 (Desert)',      area:'Desert Sand',           available:['Sandshrew','Baltoy','Cacnea','Trapinch'] },
+  { id:'mirage_tower',   location:'Mirage Tower',            area:'Tower',                 available:['Sandshrew','Trapinch','Cacnea'] },
+  { id:'fossil_mirage',  location:'Mirage Tower (Fossil)',   area:'Fossil',                available:['Lileep','Anorith'] },
+  { id:'route112',       location:'Route 112',               area:'Tall Grass',            available:['Marill','Numel'] },
+  { id:'fiery_path',     location:'Fiery Path',              area:'Cave',                  available:['Koffing','Torkoal','Grimer','Slugma','Machop'] },
+  { id:'jagged',         location:'Jagged Pass',             area:'Tall Grass',            available:['Numel','Machop','Spoink'] },
+  { id:'route113',       location:'Route 113',               area:'Ash Grass',             available:['Spinda','Skarmory','Slugma','Sandshrew'] },
+  { id:'meteor_falls',   location:'Meteor Falls',            area:'Cave',                  available:['Solrock','Lunatone','Bagon','Zubat'] },
+  { id:'route114',       location:'Route 114',               area:'Tall Grass',            available:['Lombre','Nuzleaf','Seviper','Zangoose','Swablu','Poochyena'] },
+  { id:'lavaridge_egg',  location:'Lavaridge Town',          area:'Gift (Hot Spring Egg)', available:['Wynaut'] },
+
+  // ── BEFORE GYM 5 · Petalburg — Norman (Normal) ───────────────────────────
+  { id:'route102_fish',  location:'Route 102 (Good Rod)',    area:'Good Rod',              available:['Corphish','Magikarp'] },
+  { id:'route111_fish',  location:'Route 111 (Good Rod)',    area:'Good Rod',              available:['Barboach','Magikarp'] },
+
+  // ── BEFORE GYM 6 · Fortree — Winona (Flying) ─────────────────────────────
+  { id:'route115',       location:'Route 115',               area:'Tall Grass',            available:['Swablu','Jigglypuff','Wingull'] },
+  { id:'route118',       location:'Route 118',               area:'Tall Grass',            available:['Electrike','Wingull','Zigzagoon','Kecleon'] },
+  { id:'route118_fish',  location:'Route 118 (Good Rod)',    area:'Good Rod',              available:['Carvanha','Magikarp'] },
+  { id:'route119',       location:'Route 119',               area:'Tall Grass',            available:['Tropius','Zigzagoon','Kecleon','Oddish'] },
+  { id:'route119_fish',  location:'Route 119 (Any Rod)',     area:'Any Rod',               available:['Feebas','Magikarp'] },
+  { id:'weather_inst',   location:'Weather Institute',       area:'Gift',                  available:['Castform'] },
+
+  // ── BEFORE GYM 7 · Mossdeep — Tate & Liza (Psychic) ─────────────────────
+  { id:'new_mauville',   location:'New Mauville',            area:'Building',              available:['Magnemite','Magneton','Voltorb','Electrode'] },
+  { id:'route103_fish',  location:'Route 103 (Good Rod)',    area:'Good Rod',              available:['Wailmer','Magikarp'] },
+  { id:'route120',       location:'Route 120',               area:'Tall Grass',            available:['Absol','Oddish','Kecleon','Gloom'] },
+  { id:'route121',       location:'Route 121',               area:'Tall Grass',            available:['Shuppet','Zigzagoon','Kecleon'] },
+  { id:'safari',         location:'Safari Zone',             area:'Safari',                available:['Pikachu','Natu','Girafarig','Doduo','Phanpy','Psyduck','Oddish','Wobbuffet','Pinsir','Heracross','Rhyhorn'] },
+  { id:'mt_pyre',        location:'Mt. Pyre (Inside)',       area:'Cave',                  available:['Shuppet','Duskull'] },
+  { id:'mt_pyre_out',    location:'Mt. Pyre (Outside)',      area:'Tall Grass',            available:['Vulpix','Chimecho','Shuppet','Duskull'] },
+  { id:'route123',       location:'Route 123',               area:'Tall Grass',            available:['Shuppet','Roselia','Oddish','Gloom'] },
+
+  // ── BEFORE GYM 8 · Sootopolis — Juan (Water) ─────────────────────────────
+  { id:'shoal',          location:'Shoal Cave',              area:'Cave',                  available:['Spheal','Snorunt','Zubat'] },
+  { id:'lilycove_fish',  location:'Lilycove (Super Rod)',    area:'Super Rod',             available:['Staryu','Magikarp'] },
+  { id:'route132_fish',  location:'Route 132 (Super Rod)',   area:'Super Rod',             available:['Horsea','Magikarp'] },
+  { id:'egc_fish',       location:'Ever Grande (Super Rod)', area:'Super Rod',             available:['Corsola','Luvdisc','Magikarp'] },
+  { id:'dive_sootop',    location:'Underwater (Sootopolis)', area:'Dive',                  available:['Chinchou','Relicanth','Clamperl'] },
+  { id:'seafloor',       location:'Seafloor Cavern',         area:'Cave',                  available:['Zubat','Golbat','Wailmer','Tentacruel'] },
+  { id:'cave_origin',    location:'Cave of Origin',          area:'Cave',                  available:['Zubat','Golbat'] },
+
+  // ── LEGENDARY DUNGEONS ────────────────────────────────────────────────────
+  { id:'desert_ruins',   location:'Desert Ruins',            area:'Cave',                  available:['Regirock'] },
+  { id:'island_cave',    location:'Island Cave',             area:'Cave',                  available:['Regice'] },
+  { id:'ancient_tomb',   location:'Ancient Tomb',            area:'Cave',                  available:['Registeel'] },
+
+  // ── ELITE FOUR & CHAMPION PATH ────────────────────────────────────────────
+  { id:'sky_pillar',     location:'Sky Pillar',              area:'Tower',                 available:['Rayquaza','Claydol','Banette','Mawile','Altaria','Golbat'] },
+  { id:'vict_road',      location:'Victory Road',            area:'Cave',                  available:['Golbat','Hariyama','Mightyena','Medicham','Lairon','Geodude'] },
+
+  // ── POST-GAME ─────────────────────────────────────────────────────────────
+  { id:'beldum_gift',    location:"Steven's House",          area:'Gift',                  available:['Beldum'] },
 ];
 
 const EMERALD_TRAINERS = [
@@ -339,38 +409,39 @@ const TRAINER_BADGE_MAP = {
   tate_liza:'mind', juan:'rain'
 };
 
+// ── Updated: use local title-card images from /images/ folder ──
 const GAMES = [
   {
     id:'emerald',
-    name:'Pokemon Emerald',
+    name:'Pokémon Emerald',
     shortName:'Emerald',
     available: true,
     coverUrl:'images/emerald.webp',
   },
   {
     id:'ruby',
-    name:'Pokemon Ruby',
+    name:'Pokémon Ruby',
     shortName:'Ruby',
     available: false,
     coverUrl:'images/ruby.png',
   },
   {
     id:'sapphire',
-    name:'Pokemon Sapphire',
+    name:'Pokémon Sapphire',
     shortName:'Sapphire',
     available: false,
     coverUrl:'images/sapphire.png',
   },
   {
     id:'firered',
-    name:'Pokemon FireRed',
+    name:'Pokémon FireRed',
     shortName:'FireRed',
     available: false,
     coverUrl:'images/firered.webp',
   },
   {
     id:'leafgreen',
-    name:'Pokemon LeafGreen',
+    name:'Pokémon LeafGreen',
     shortName:'LeafGreen',
     available: false,
     coverUrl:'images/leafgreen.webp',
@@ -562,7 +633,7 @@ function renderSaves(gameId) {
     }).join('') + `</div>`;
   }
 
-  html += `<button class="btn-new-run" id="new-run-btn">+ Start New Run</button>`;
+  html += `<button class="btn-new-run" id="new-run-btn">＋ Start New Run</button>`;
   container.innerHTML = html;
 
   container.querySelectorAll('[data-action]').forEach(btn => {
@@ -653,7 +724,7 @@ function renderEncounters(run) {
         const data = currentRun?.encounters[locId] || {};
 
         if (act === 'catch') {
-          if (!data.pokemon) { showToast('Choose a Pokemon first!', 'red'); return; }
+          if (!data.pokemon) { showToast('Choose a Pokémon first!', 'red'); return; }
           setEncounterStatus(locId, 'alive');
           showToast(`${data.pokemon} caught!`, 'green');
         } else if (act === 'miss') {
@@ -662,7 +733,7 @@ function renderEncounters(run) {
         } else if (act === 'kill') {
           if (!confirm(`Mark ${data.nickname || data.pokemon} as fainted?`)) return;
           setEncounterStatus(locId, 'dead');
-          showToast(`${data.nickname || data.pokemon} has fainted.`, 'red');
+          showToast(`${data.nickname || data.pokemon} has fallen... 💀`, 'red');
         } else if (act === 'release') {
           if (!confirm(`Release ${data.nickname || data.pokemon}?`)) return;
           setEncounterStatus(locId, 'released');
@@ -686,7 +757,7 @@ function buildEncRow(enc, data) {
     ? `<img class="enc-sprite" src="${spriteUrl(pokemon)||''}" alt="${pokemon}" onerror="this.style.display='none'">`
     : `<div class="enc-sprite-empty">?</div>`;
 
-  const options = `<option value="">Choose...</option>` + enc.available.map(p =>
+  const options = `<option value="">Choose…</option>` + enc.available.map(p =>
     `<option value="${p}" ${p===pokemon?'selected':''}>${p}</option>`
   ).join('');
 
@@ -770,7 +841,7 @@ function renderTrainers(run) {
 function buildTrainerCard(trainer, run) {
   const defeated = run.defeatedTrainers.includes(trainer.id);
   const defClass  = defeated ? 'defeated' : '';
-  const defBadge  = defeated ? `<span class="defeated-badge">Defeated</span>` : '';
+  const defBadge  = defeated ? `<span class="defeated-badge">✓ Defeated</span>` : '';
   const btnLabel  = defeated ? 'Mark Active' : 'Mark Defeated';
 
   const pokeCards = trainer.pokemon.map(p => {
@@ -797,7 +868,7 @@ function buildTrainerCard(trainer, run) {
           ${defBadge}
         </div>
         <div class="trainer-meta-row">
-          <span class="level-cap-badge">Level Cap: ${trainer.levelCap}</span>
+          <span class="level-cap-badge">⬆ Level Cap: ${trainer.levelCap}</span>
           ${trainer.badge ? `<span class="level-cap-badge" style="color:var(--accent);border-color:var(--accent)">${trainer.badge}</span>` : ''}
           <button class="btn btn-ghost btn-sm defeat-btn" data-trainer="${trainer.id}">${btnLabel}</button>
         </div>
@@ -821,9 +892,9 @@ function renderBox() {
     .filter(([,e]) => e.status === 'alive' && e.pokemon)
     .map(([locId, e]) => ({...e, locId}));
 
-  countEl.textContent = `${alive.length} Pokemon`;
+  countEl.textContent = `${alive.length} Pokémon`;
   container.innerHTML = alive.length === 0
-    ? `<p class="empty-state" style="grid-column:1/-1">No Pokemon in your box yet. Go catch some!</p>`
+    ? `<p class="empty-state" style="grid-column:1/-1">No Pokémon in your box yet. Go catch some!</p>`
     : alive.map(e => buildPokeCard(e, false)).join('');
 }
 
@@ -844,7 +915,7 @@ function renderGrave() {
 
   countEl.textContent = `${dead.length} fallen`;
   container.innerHTML = dead.length === 0
-    ? `<p class="empty-state" style="grid-column:1/-1">No fallen Pokemon. Long may they live!</p>`
+    ? `<p class="empty-state" style="grid-column:1/-1">No fallen Pokémon. Long may they live!</p>`
     : dead.map(e => buildPokeCard(e, true)).join('');
 }
 
@@ -890,7 +961,7 @@ function showEvolveModal(locationId, pokemonName) {
 
   const body = document.getElementById('evolve-modal-body');
   body.innerHTML = `
-    <p class="field-label" style="margin-bottom:0.75rem">${pokemonName} evolves into:</p>
+    <p class="field-label" style="margin-bottom:0.75rem">${pokemonName} → </p>
     <div class="evolve-options">
       ${evos.map(evo => {
         const spr = spriteUrl(evo);
@@ -949,10 +1020,10 @@ function noRunState(view) {
   const msgs = {
     game:  ['No Active Run', 'Head to <b>Home</b> to select a game and start or load a run.'],
     box:   ['No Active Run', 'Start a run from <b>Home</b> to track your team.'],
-    grave: ['No Active Run', 'Start a run from <b>Home</b> to track your fallen Pokemon.'],
+    grave: ['No Active Run', 'Start a run from <b>Home</b> to track your fallen Pokémon.'],
   };
   const [h, p] = msgs[view]||['No Active Run',''];
-  return `<div class="no-run-state"><h2>${h}</h2><p>${p}</p></div>`;
+  return `<div class="no-run-state"><span class="nrs-icon">⬛</span><h2>${h}</h2><p>${p}</p></div>`;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -972,23 +1043,20 @@ document.addEventListener('DOMContentLoaded', () => {
     createNewRun(pendingRunGame, name);
     hideNewRunModal();
     navigate('game');
-    showToast(`Run "${name}" started. Good luck!`, 'green');
+    showToast(`Run "${name}" started! Good luck!`, 'green');
   });
   document.getElementById('run-name-input').addEventListener('keydown', e => {
     if (e.key === 'Enter') document.getElementById('modal-create-btn').click();
   });
 
-  // 3/30/26 bugfix
-  // fixed null bug with hideEvolveModal returning null on evolutions
   document.getElementById('evolve-cancel-btn').addEventListener('click', hideEvolveModal);
   document.getElementById('evolve-confirm-btn').addEventListener('click', () => {
     if (!pendingEvolveLoc || !pendingEvolveSelection) return;
     const run = getCurrentRun();
     const old = run?.encounters[pendingEvolveLoc]?.pokemon;
-    const newPokemon = pendingEvolveSelection;
-    evolveEncounter(pendingEvolveLoc, newPokemon);
+    evolveEncounter(pendingEvolveLoc, pendingEvolveSelection);
     hideEvolveModal();
-    showToast(`${old} evolved into ${newPokemon}!`, 'green');
+    showToast(`${old} evolved into ${pendingEvolveSelection}!`, 'green');
     renderGame();
   });
 
