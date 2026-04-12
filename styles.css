@@ -164,7 +164,6 @@ body::before {
   margin-bottom: 1.5rem;
 }
 
-/* ── Game grid: wrapping row of logo tiles ── */
 .game-grid {
   display: flex;
   gap: 1rem;
@@ -189,7 +188,6 @@ body::before {
   box-shadow: 0 0 0 1px var(--accent), 0 0 24px var(--accent-glow);
 }
 
-/* aspect-ratio 4:3 container so wide logos are never cropped */
 .game-tile img {
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -513,10 +511,14 @@ option { background: var(--surface); color: var(--text); }
 .act-release{ border-color: var(--purple); color: var(--purple); }
 .act-release:hover { background: rgba(167,139,250,0.1); }
 
+/* ═══════════════════════════════════════════════════════════
+   TRAINER CARDS
+═══════════════════════════════════════════════════════════ */
+
 .trainers-wrap {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 .trainer-card {
@@ -537,7 +539,7 @@ option { background: var(--surface); color: var(--text); }
   gap: 0.75rem;
   flex-wrap: wrap;
 }
-.trainer-name-row { display: flex; align-items: center; gap: 0.65rem; }
+.trainer-name-row { display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap; }
 .trainer-name {
   font-size: 1.05rem;
   font-weight: 700;
@@ -550,7 +552,7 @@ option { background: var(--surface); color: var(--text); }
   border-radius: 20px;
   letter-spacing: 0.05em;
 }
-.trainer-meta-row { display: flex; align-items: center; gap: 0.65rem; }
+.trainer-meta-row { display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap; }
 .level-cap-badge {
   font-size: 0.75rem;
   font-weight: 600;
@@ -569,57 +571,140 @@ option { background: var(--surface); color: var(--text); }
   border-radius: 20px;
 }
 
+/* ── Pokémon card grid: 2 columns ─────────────────────────── */
 .trainer-poke-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-  gap: 0.65rem;
-  padding: 1rem 1.25rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  padding: 1rem 1.25rem 1.25rem;
 }
 
+/* ── Individual Pokémon card ──────────────────────────────── */
 .trainer-poke-card {
-  background: var(--surface);
+  background: var(--poke-bg, var(--surface));
   border: 1px solid var(--border);
+  border-top: 3px solid var(--poke-line, var(--border));
   border-radius: var(--radius-sm);
-  padding: 0.75rem;
+  padding: 0.9rem 1rem 0.9rem;
   display: flex;
-  gap: 0.6rem;
+  flex-direction: column;
+  gap: 0.7rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color var(--transition);
+}
+.trainer-poke-card:hover { border-color: var(--poke-line, var(--border-hl)); }
+
+/* ── Top row: name/level left, sprite right ───────────────── */
+.tpc-top {
+  display: flex;
   align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
 }
-.trainer-poke-card img {
-  width: 56px; height: 56px;
-  object-fit: contain;
-  image-rendering: pixelated;
-  flex-shrink: 0;
+
+.tpc-name-block {
+  flex: 1;
+  min-width: 0;
+  padding-top: 0.1rem;
 }
-.tpc-info { flex: 1; min-width: 0; }
-.tpc-name { font-weight: 700; font-size: 0.83rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.tpc-lv { font-size: 0.72rem; color: var(--muted-light); margin-bottom: 0.3rem; }
-.moves-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.2rem; }
-.move-tag {
-  font-size: 0.58rem;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 0.12rem 0.3rem;
-  color: var(--muted);
-  text-align: center;
+
+.tpc-lv {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--muted-light);
+  margin-bottom: 0.2rem;
+  letter-spacing: 0.02em;
+}
+
+.tpc-name {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.type-Rock    { background: rgba(180,138,73,0.18); color: #c8a06e; border: 1px solid rgba(180,138,73,0.3); }
-.type-Fight   { background: rgba(194,46,40,0.18); color: #e06060; border: 1px solid rgba(194,46,40,0.3); }
-.type-Electric{ background: rgba(248,208,48,0.18); color: #f8d030; border: 1px solid rgba(248,208,48,0.3); }
-.type-Fire    { background: rgba(240,128,48,0.18); color: #f08030; border: 1px solid rgba(240,128,48,0.3); }
-.type-Normal  { background: rgba(168,168,120,0.18); color: #a8a878; border: 1px solid rgba(168,168,120,0.3); }
-.type-Flying  { background: rgba(104,144,240,0.18); color: #8aaeff; border: 1px solid rgba(104,144,240,0.3); }
-.type-Psychic { background: rgba(248,88,136,0.18); color: #f878a8; border: 1px solid rgba(248,88,136,0.3); }
-.type-Water   { background: rgba(104,144,240,0.18); color: #6090f0; border: 1px solid rgba(104,144,240,0.3); }
-.type-Dark    { background: rgba(112,88,72,0.18); color: #a09080; border: 1px solid rgba(112,88,72,0.3); }
-.type-Ghost   { background: rgba(112,88,152,0.18); color: #9080c8; border: 1px solid rgba(112,88,152,0.3); }
-.type-Ice     { background: rgba(152,216,216,0.18); color: #98d8d8; border: 1px solid rgba(152,216,216,0.3); }
-.type-Dragon  { background: rgba(112,56,248,0.18); color: #9070f8; border: 1px solid rgba(112,56,248,0.3); }
+.trainer-poke-card img {
+  width: 88px;
+  height: 88px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  flex-shrink: 0;
+}
+
+.tpc-sprite-blank {
+  width: 88px;
+  height: 88px;
+  flex-shrink: 0;
+}
+
+/* ── Move grid: 2×2 ──────────────────────────────────────── */
+.moves-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+}
+
+.move-tag {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.42rem 0.55rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.22rem;
+  min-width: 0;
+}
+
+.move-name {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+/* ── Move type pill (shared shape, color from type class) ─── */
+.move-type-pill {
+  font-size: 0.58rem;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  letter-spacing: 0.06em;
+  display: inline-block;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TYPE COLOUR CLASSES  (used on trainer-type-badge, move-type-pill, trainer_poke_card bg)
+═══════════════════════════════════════════════════════════ */
+
+.type-Rock    { background: rgba(180,138,73,0.2);  color: #c8a06e; border: 1px solid rgba(180,138,73,0.35); }
+.type-Fight   { background: rgba(192,48,40,0.2);   color: #e06060; border: 1px solid rgba(192,48,40,0.35); }
+.type-Electric{ background: rgba(248,208,48,0.2);  color: #f8d030; border: 1px solid rgba(248,208,48,0.35); }
+.type-Fire    { background: rgba(240,128,48,0.2);  color: #f08030; border: 1px solid rgba(240,128,48,0.35); }
+.type-Normal  { background: rgba(168,168,120,0.2); color: #b8b880; border: 1px solid rgba(168,168,120,0.35); }
+.type-Flying  { background: rgba(104,144,240,0.2); color: #8aaeff; border: 1px solid rgba(104,144,240,0.35); }
+.type-Psychic { background: rgba(248,88,136,0.2);  color: #f878a8; border: 1px solid rgba(248,88,136,0.35); }
+.type-Water   { background: rgba(104,144,240,0.2); color: #6090f0; border: 1px solid rgba(104,144,240,0.35); }
+.type-Dark    { background: rgba(112,88,72,0.2);   color: #b09080; border: 1px solid rgba(112,88,72,0.35); }
+.type-Ghost   { background: rgba(112,88,152,0.2);  color: #9080c8; border: 1px solid rgba(112,88,152,0.35); }
+.type-Ice     { background: rgba(152,216,216,0.2); color: #98d8d8; border: 1px solid rgba(152,216,216,0.35); }
+.type-Dragon  { background: rgba(112,56,248,0.2);  color: #9070f8; border: 1px solid rgba(112,56,248,0.35); }
+.type-Grass   { background: rgba(120,200,80,0.2);  color: #88d848; border: 1px solid rgba(120,200,80,0.35); }
+.type-Poison  { background: rgba(160,64,160,0.2);  color: #c060c0; border: 1px solid rgba(160,64,160,0.35); }
+.type-Ground  { background: rgba(224,192,104,0.2); color: #d4a840; border: 1px solid rgba(224,192,104,0.35); }
+.type-Steel   { background: rgba(184,184,208,0.2); color: #a8a8c8; border: 1px solid rgba(184,184,208,0.35); }
+.type-Bug     { background: rgba(168,184,32,0.2);  color: #a8c820; border: 1px solid rgba(168,184,32,0.35); }
+
+/* ═══════════════════════════════════════════════════════════
+   BOX & GRAVE
+═══════════════════════════════════════════════════════════ */
 
 .poke-view-wrap {
   max-width: 1100px;
@@ -696,6 +781,10 @@ option { background: var(--surface); color: var(--text); }
   text-overflow: ellipsis;
   max-width: 100%;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   MODALS
+═══════════════════════════════════════════════════════════ */
 
 .modal-overlay {
   position: fixed;
@@ -776,6 +865,10 @@ option { background: var(--surface); color: var(--text); }
 .no-run-state h2 { font-size: 1.1rem; font-weight: 600; color: var(--muted-light); margin-bottom: 0.5rem; }
 .no-run-state p { font-size: 0.9rem; line-height: 1.6; }
 
+/* ═══════════════════════════════════════════════════════════
+   TOAST
+═══════════════════════════════════════════════════════════ */
+
 .toast {
   position: fixed;
   bottom: 2rem;
@@ -796,8 +889,13 @@ option { background: var(--surface); color: var(--text); }
 .toast.toast-green { border-color: var(--accent); color: var(--accent); }
 .toast.toast-red   { border-color: var(--red);   color: var(--red); }
 
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════ */
+
 @media (max-width: 900px) {
   .enc-row { grid-template-columns: 130px 1fr 120px 90px auto; gap: 0.5rem; padding: 0.6rem 0.75rem; }
+  .trainer-poke-grid { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 700px) {
@@ -812,7 +910,7 @@ option { background: var(--surface); color: var(--text); }
   .enc-actions { grid-column: 1 / -1; flex-wrap: wrap; }
   .home-content { padding: 1rem 1rem 4rem; }
   .game-view-wrap, .poke-view-wrap { padding: 1.5rem 1rem 4rem; }
-
-  /* On small screens, allow tiles to be a bit narrower */
   .game-tile { width: 150px; }
+  .trainer-poke-grid { grid-template-columns: 1fr; }
+  .trainer-poke-card img { width: 72px; height: 72px; }
 }

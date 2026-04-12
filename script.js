@@ -269,29 +269,29 @@ const EMERALD_TRAINERS = [
     id:'brawly', name:'Brawly', title:'Gym Leader', location:'Dewford Town',
     badge:'Knuckle Badge', type:'Fight', levelCap:20,
     pokemon:[
-      { name:'Machop', level:17, moves:['Low Kick','Leer','Focus Energy','Karate Chop'] },
-      { name:'Meditite', level:17, moves:['Confusion','Detect','Hidden Power','Endure'] },
-      { name:'Makuhita', level:20, moves:['Arm Thrust','Vital Throw','Fake Out','Sand Attack'] },
+      { name:'Machop', level:17, moves:['Karate Chop', 'Low Sweep,', 'Seismic Toss', 'Bulk Up'] },
+      { name:'Meditite', level:17, moves:['Focus Punch', 'Light Screen', 'Reflect', 'Bulk Up'] },
+      { name:'Makuhita', level:20, moves:['Arm Thrust','Vital Throw','Reversal','Bulk Up'] },
     ]
   },
   {
     id:'wattson', name:'Wattson', title:'Gym Leader', location:'Mauville City',
     badge:'Dynamo Badge', type:'Electric', levelCap:24,
     pokemon:[
-      { name:'Voltorb', level:20, moves:['Rollout','Spark','Screech','Charge'] },
-      { name:'Electrike', level:20, moves:['Quick Attack','Spark','Leer','Howl'] },
-      { name:'Magneton', level:22, moves:['Thunder Wave','Supersonic','Spark','Metal Sound'] },
-      { name:'Manectric', level:24, moves:['Spark','Quick Attack','Leer','Howl'] },
+      { name:'Voltorb', level:20, moves:['Rollout','Spark','Self-Destruct','Thunder Wave'] },
+      { name:'Electrike', level:20, moves:['Quick Attack','Shock Wave','Leer','Sonic Boom'] },
+      { name:'Magneton', level:22, moves:['Thunder Wave','Supersonic','Shock Wave','Sonic Boom'] },
+      { name:'Manectric', level:24, moves:['Shock Wave','Quick Attack','Thunder Wave','Howl'] },
     ]
   },
   {
     id:'flannery', name:'Flannery', title:'Gym Leader', location:'Lavaridge Town',
     badge:'Heat Badge', type:'Fire', levelCap:29,
     pokemon:[
-      { name:'Numel', level:26, moves:['Magnitude','Ember','Focus Energy','Sunny Day'] },
-      { name:'Slugma', level:26, moves:['Smog','Ember','Rock Slide','Amnesia'] },
-      { name:'Camerupt', level:28, moves:['Rock Slide','Ember','Attract','Amnesia'] },
-      { name:'Torkoal', level:29, moves:['Body Slam','Flamethrower','Attract','Overheat'] },
+      { name:'Numel', level:26, moves:['Magnitude','Overheat','Take Down','Sunny Day'] },
+      { name:'Slugma', level:26, moves:['Smog','Overheat','Light Screen','Sunny Day'] },
+      { name:'Camerupt', level:28, moves:['Tackle','Overheat','Attract','Sunny Day'] },
+      { name:'Torkoal', level:29, moves:['Body Slam','Overheat','Attract','Sunny Day'] },
     ]
   },
   {
@@ -301,26 +301,28 @@ const EMERALD_TRAINERS = [
       { name:'Spinda', level:27, moves:['Psybeam','Facade','Teeter Dance','Encore'] },
       { name:'Vigoroth', level:27, moves:['Slash','Facade','Faint Attack','Encore'] },
       { name:'Linoone', level:29, moves:['Slash','Belly Drum','Facade','Headbutt'] },
-      { name:'Slaking', level:31, moves:['Yawn','Facade','Swagger','Blizzard'] },
+      { name:'Slaking', level:31, moves:['Yawn','Facade','Counter','Faint Attack'] },
     ]
   },
   {
     id:'winona', name:'Winona', title:'Gym Leader', location:'Fortree City',
     badge:'Feather Badge', type:'Flying', levelCap:35,
     pokemon:[
-      { name:'Swablu', level:31, moves:['Peck','Safeguard','Mist','Mirror Move'] },
-      { name:'Tropius', level:31, moves:['Magical Leaf','Synthesis','Stomp','Whirlwind'] },
-      { name:'Pelipper', level:30, moves:['Surf','Protect','Ice Beam','Shock Wave'] },
-      { name:'Skarmory', level:33, moves:['Steel Wing','Sand Attack','Spikes','Fly'] },
-      { name:'Altaria', level:35, moves:['Dragon Dance','Dragonbreath','Sing','Aerial Ace'] },
+      { name:'Swablu', level:31, moves:['Aerial Ace','Perish Song','Mirror Move','Safeguard'] },
+      { name:'Tropius', level:31, moves:['Solar Beam','Aerial Ace','Sunny Day','Synthesis'] },
+      { name:'Pelipper', level:30, moves:['Aerial Ace','Water Gun','Supersonic','Protect'] },
+      { name:'Skarmory', level:33, moves:['Aerial Ace','Steel Wing','Fury Attack','Sand Attack'] },
+      { name:'Altaria', level:35, moves:['Earthquake','Aerial Ace','Dragon Breath','Dragon Dance'] },
     ]
   },
   {
     id:'tate_liza', name:'Tate & Liza', title:'Gym Leaders', location:'Mossdeep City',
     badge:'Mind Badge', type:'Psychic', levelCap:42,
     pokemon:[
-      { name:'Lunatone', level:42, moves:['Confusion','Hypnosis','Calm Mind','Light Screen'] },
-      { name:'Solrock', level:42, moves:['Confusion','Sunny Day','Calm Mind','Flamethrower'] },
+      { name:'Claydol', level:41, moves:['Psychic', 'Earthquake', 'Ancient Power', 'Light Screen']},
+      { name: 'Xatu', level:41, moves: ['Psychic', 'Sunny Day', 'Confuse Ray', 'Calm Mind']},
+      { name:'Lunatone', level:42, moves:['Psychic','Hypnosis','Calm Mind','Light Screen'] },
+      { name:'Solrock', level:42, moves:['Psychic','Sunny Day','Solar Beam','Flamethrower'] },
     ]
   },
   {
@@ -407,6 +409,97 @@ const TRAINER_BADGE_MAP = {
   roxanne:'stone', brawly:'knuckle', wattson:'dynamo',
   flannery:'heat', norman:'balance', winona:'feather',
   tate_liza:'mind', juan:'rain'
+};
+
+// ── Move → type lookup (covers all moves in trainer rosters) ──────────────
+const MOVE_TYPES = {
+  // Normal
+  'Tackle':'Normal','Defense Curl':'Normal','Harden':'Normal','Block':'Normal',
+  'Focus Energy':'Normal','Karate Chop':'Normal','Fake Out':'Normal',
+  'Quick Attack':'Normal','Howl':'Normal','Screech':'Normal','Endure':'Normal',
+  'Facade':'Normal','Teeter Dance':'Normal','Encore':'Normal','Slash':'Normal',
+  'Belly Drum':'Normal','Headbutt':'Normal','Yawn':'Normal','Swagger':'Normal',
+  'Safeguard':'Normal','Mirror Move':'Normal','Stomp':'Normal','Whirlwind':'Normal',
+  'Protect':'Normal','Body Slam':'Normal','Hyper Beam':'Normal','Double Team':'Normal',
+  'Flail':'Normal','Tickle':'Normal','Recover':'Normal','Roar':'Normal',
+  'Attract':'Normal','Sweet Kiss':'Normal','Sing':'Normal','Scary Face':'Normal',
+  'Explosion':'Normal','Swords Dance':'Normal','Leer':'Normal','Hidden Power':'Normal',
+  'Supersonic':'Normal', 'Self-Destruct':'Normal', 'Sonic Boom': 'Normal',
+  // Rock
+  'Rock Throw':'Rock','Rollout':'Rock','Rock Slide':'Rock','AncientPower':'Rock',
+  'Power Gem':'Rock',
+  // Fighting
+  'Low Kick':'Fight','Arm Thrust':'Fight','Vital Throw':'Fight','Detect':'Fight',
+  'Focus Punch':'Fight',
+  // Ground
+  'Sand Attack':'Ground','Magnitude':'Ground','Earthquake':'Ground',
+  'Spikes':'Ground','Earth Power':'Ground',
+  // Psychic
+  'Confusion':'Psychic','Psybeam':'Psychic','Amnesia':'Psychic','Calm Mind':'Psychic',
+  'Light Screen':'Psychic','Hypnosis':'Psychic','Skill Swap':'Psychic',
+  'Future Sight':'Psychic','Psychic':'Psychic','Extrasensory':'Psychic',
+  'Cosmic Power':'Psychic','Stored Power':'Psychic','Psycho Cut':'Psychic',
+  // Electric
+  'Spark':'Electric','Charge':'Electric','Thunder Wave':'Electric',
+  'Shock Wave':'Electric','Discharge':'Electric',
+  // Steel
+  'Metal Sound':'Steel','Steel Wing':'Steel','Iron Tail':'Steel',
+  'Meteor Mash':'Steel','Iron Defense':'Steel',
+  // Fire
+  'Ember':'Fire','Sunny Day':'Fire','Flamethrower':'Fire','Overheat':'Fire',
+  'Will-O-Wisp':'Fire','Blaze Kick':'Fire','Morning Sun':'Fire',
+  // Poison
+  'Smog':'Poison','Toxic':'Poison',
+  // Ice
+  'Blizzard':'Ice','Mist':'Ice','Ice Beam':'Ice','Ice Ball':'Ice',
+  'Aurora Beam':'Ice','Sheer Cold':'Ice','Hail':'Ice','Icy Wind':'Ice',
+  // Flying
+  'Peck':'Flying','Fly':'Flying','Aerial Ace':'Flying',
+  // Dragon
+  'Dragon Dance':'Dragon','Dragonbreath':'Dragon','DragonBreath':'Dragon',
+  'Dragon Claw':'Dragon',
+  // Water
+  'Surf':'Water','Water Pulse':'Water','Crabhammer':'Water','Aqua Jet':'Water',
+  'Razor Shell':'Water',
+  // Dark
+  'Faint Attack':'Dark','Crunch':'Dark','Taunt':'Dark','Bite':'Dark',
+  'Torment':'Dark',
+  // Ghost
+  'Shadow Ball':'Ghost','Confuse Ray':'Ghost','Spite':'Ghost',
+  'Grudge':'Ghost','Curse':'Ghost',
+  // Grass
+  'Magical Leaf':'Grass','Synthesis':'Grass','Needle Arm':'Grass',
+  'Cotton Spore':'Grass','Ingrain':'Grass','Grass Knot':'Grass',
+  // Bug
+  'X-Scissor':'Bug',
+  // Other
+  'Extreme Speed':'Normal','Skitter Smack':'Bug','Thousand Arrows':'Ground',
+  'Stomping Tantrum':'Ground',
+};
+
+// ── Pokémon → primary type (trainer roster Pokémon only) ──────────────────
+const POKEMON_PRIMARY_TYPE = {
+  Geodude:'Rock', Nosepass:'Rock',
+  Machop:'Fight', Meditite:'Fight', Makuhita:'Fight',
+  Voltorb:'Electric', Electrike:'Electric', Magneton:'Electric', Manectric:'Electric',
+  Numel:'Fire', Slugma:'Fire', Camerupt:'Fire', Torkoal:'Fire',
+  Spinda:'Normal', Vigoroth:'Normal', Linoone:'Normal', Slaking:'Normal',
+  Swablu:'Normal', Tropius:'Grass', Pelipper:'Water', Skarmory:'Steel', Altaria:'Dragon',
+  Lunatone:'Rock', Solrock:'Rock',
+  Luvdisc:'Water', Whiscash:'Water', Sealeo:'Water', Crawdaunt:'Water', Kingdra:'Water',
+  Mightyena:'Dark', Shiftry:'Grass', Sharpedo:'Water', Cacturne:'Grass', Absol:'Dark',
+  Dusclops:'Ghost', Banette:'Ghost', Sableye:'Dark',
+  Glalie:'Ice', Walrein:'Water',
+  Shelgon:'Dragon', Flygon:'Dragon', Salamence:'Dragon',
+  Claydol:'Ground', Aggron:'Steel', Cradily:'Rock', Armaldo:'Rock', Metagross:'Steel',
+};
+
+// ── Type → accent hex color (for card tinting) ────────────────────────────
+const TYPE_ACCENT_COLORS = {
+  Normal:'#a8a878', Fire:'#f08030', Water:'#6890f0', Electric:'#f8d030',
+  Grass:'#78c850', Ice:'#98d8d8', Fight:'#c03028', Poison:'#a040a0',
+  Ground:'#e0c068', Flying:'#a890f0', Psychic:'#f85888', Bug:'#a8b820',
+  Rock:'#b8a038', Ghost:'#705898', Dragon:'#7038f8', Dark:'#705848', Steel:'#b8b8d0',
 };
 
 // ── Updated: use local title-card images from /images/ folder ──
@@ -846,15 +939,25 @@ function buildTrainerCard(trainer, run) {
 
   const pokeCards = trainer.pokemon.map(p => {
     const spr = spriteUrl(p.name);
-    const movesHtml = p.moves.map(m => `<div class="move-tag">${m}</div>`).join('');
+    const primaryType = POKEMON_PRIMARY_TYPE[p.name] || 'Normal';
+    const accent = TYPE_ACCENT_COLORS[primaryType] || '#888';
+    const movesHtml = p.moves.map(m => {
+      const mtype = MOVE_TYPES[m] || 'Normal';
+      return `<div class="move-tag">
+        <span class="move-name">${m}</span>
+        <span class="move-type-pill type-${mtype}">${mtype.toUpperCase()}</span>
+      </div>`;
+    }).join('');
     return `
-      <div class="trainer-poke-card">
-        ${spr ? `<img src="${spr}" alt="${p.name}" onerror="this.style.display='none'">` : ''}
-        <div class="tpc-info">
-          <div class="tpc-name">${p.name}</div>
-          <div class="tpc-lv">Lv. ${p.level}</div>
-          <div class="moves-grid">${movesHtml}</div>
+      <div class="trainer-poke-card" style="--poke-bg:${accent}18;--poke-line:${accent}">
+        <div class="tpc-top">
+          <div class="tpc-name-block">
+            <div class="tpc-lv">Lv. ${p.level}</div>
+            <div class="tpc-name">${p.name}</div>
+          </div>
+          ${spr ? `<img src="${spr}" alt="${p.name}" onerror="this.style.opacity='0'">` : '<div class="tpc-sprite-blank"></div>'}
         </div>
+        <div class="moves-grid">${movesHtml}</div>
       </div>`;
   }).join('');
 
